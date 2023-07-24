@@ -28,7 +28,7 @@ namespace Bev.IO.Gpib.NiVisa
         public void Local(int address)
         {
             CheckIfAddressConsistent(address);
-            Nop();
+            session.SendRemoteLocalCommand(Ivi.Visa.RemoteLocalMode.Local);
         }
 
         public void Output(int address, string command)
@@ -40,7 +40,7 @@ namespace Bev.IO.Gpib.NiVisa
         public void Remote(int address)
         {
             CheckIfAddressConsistent(address);
-            Nop();
+            session.SendRemoteLocalCommand(Ivi.Visa.RemoteLocalMode.Remote);
         }
 
         public void Trigger(int address)
@@ -59,8 +59,5 @@ namespace Bev.IO.Gpib.NiVisa
         {
             if (address != initAddress) throw new ArgumentException("Address different from initialisation");
         }
-
-        private void Nop()
-        { }
     }
 }
